@@ -3,19 +3,19 @@ https://github.com/fedelopez/ga-seifx01/blob/master/week-14/day-02.md
 
 
 * Ruby version
-ruby 2.6.3p62
-Rails 6.0.1
-node v11.0.0
+- ruby 2.6.3p62
+- Rails 6.0.1
+- node v11.0.0
 * Configuration
-bundle
-yarn install
+- bundle
+- yarn install
 
 * Database creation
-rails db:create
+- rails db:create
 * Database initialization
-rails db:migrate db:seed
+- rails db:migrate db:seed
 * How to run the test suite
-/ not implemented
+- / not implemented
 
 * Deployment instructions
 
