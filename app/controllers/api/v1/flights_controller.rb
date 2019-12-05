@@ -10,7 +10,8 @@ class Api::V1::FlightsController < ApplicationController
     else
       flights = Flight.all.order(departure_id: :asc)
     end
-    render json: flights
+
+    render json: replace_ids(flights)
   end
 
   def create
@@ -25,6 +26,24 @@ class Api::V1::FlightsController < ApplicationController
   end
 
   private
+  def replace_ids(flights)
+    airports = Airport.all
+    airport_obj = {}
+    airports.each {|airport|
+      airport_obj[airport.id] = airport.code
+    }
+    
+    flight_list = []
+    flights.each{ |flight|
+      flight_obj = {}
+      flight_obj = flight.as_json
+      flight_obj["departure_airport"] = airport_obj[flight.departure_id]
+      flight_obj["arrival_airport"] = airport_obj[flight.arrival_id]
+      flight_list.push(flight_obj)
+    }
+    flight_list
+  end
+
 
   def flight_params
     params.permit(:id, :departure, :arrival, :date, :fleet_id)
