@@ -6,6 +6,8 @@ class Flight < ApplicationRecord
 
   validate :check_departure_and_arrival
 
+  
+
   def check_departure_and_arrival
     if departure == arrival
       errors.add(:arrival, "can't be the same as departure")
