@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_30_034305) do
+ActiveRecord::Schema.define(version: 2019_12_05_053250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,13 +50,31 @@ ActiveRecord::Schema.define(version: 2019_11_30_034305) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "seats", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "flight_id", null: false
+    t.integer "seat_row", null: false
+    t.string "seat_col", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["flight_id"], name: "index_seats_on_flight_id"
+    t.index ["user_id"], name: "index_seats_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.boolean "admin"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "favorate_color"
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "fleets", "planes"
+  add_foreign_key "flights", "fleets"
+  add_foreign_key "seats", "flights"
+  add_foreign_key "seats", "users"
 end

@@ -19,3 +19,13 @@ Airport.create(location: "Melbourne Airport", code: "MEL")
 
 Flight.create(departure_id: Airport.where("code= 'SYD'").first.id, arrival_id: Airport.where("code= 'MEL'").first.id, date: DateTime.new(2019, 8, 29, 12, 35, 00), fleet_id: 1)
 Flight.create(departure_id: Airport.where("code= 'MEL'").first.id, arrival_id: Airport.where("code= 'SYD'").first.id, date: DateTime.new(2019, 8, 29, 16, 35, 00), fleet_id: 1)
+
+User.create(first_name: "admin", last_name: "A", favorate_color: "black", email: "admin@admin.com", password_digest: "password", admin: true)
+User.create(first_name: "user", last_name: "test", favorate_color: "black", email: "user@admin.com", password_digest: "password")
+User.create(first_name: "daniel", last_name: "q", favorate_color: "black", email: "daniel@admin.com", password_digest: "password")
+User.create(first_name: "joe", last_name: "black", favorate_color: "yellow", email: "Joe@admin.com", password_digest: "password")
+User.create(first_name: "ridwan", last_name: "black", favorate_color: "red", email: "ridwan@admin.com", password_digest: "password")
+
+Seat.create(user_id: 2, flight_id: 1, seat_row: 2, seat_col: 3)
+Seat.create(user_id: 3, flight_id: 2, seat_row: 15, seat_col: 4)
+Seat.create(user_id: 4, flight_id: 2, seat_row: 15, seat_col: 3)
