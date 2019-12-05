@@ -20,3 +20,7 @@ https://github.com/fedelopez/ga-seifx01/blob/master/week-14/day-02.md
 * Deployment instructions
 
 * ...
+api
+get available airports
+http://localhost:3000/api/v1/airports/index
+
