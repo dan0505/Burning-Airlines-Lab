@@ -1,25 +1,28 @@
 import React from "react";
 import Seat from "./Seat"
+import im_seat from "images/im_seat.jpeg"
 
 class Plane extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
+    const booked_seat = this.props.flight.booked_seats;
+    const flight_id = this.props.flight.id;
     
     const seatRow = (row, col) => {
       let rowLetter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
       rowLetter = rowLetter.slice(0, col);
       let seat_row = [];
       console.log("passed in row are", seat_row)
-      rowLetter.forEach(val => seat_row.push(Seat(row, val, val))
+      rowLetter.forEach(val => seat_row.push(Seat(row, im_seat, val, booked_seat, flight_id))
       )
       return seat_row
     }
 
     const seats = (row, col) => {
       console.log("rows are", row);
-      let seats = Array.from(Array(row).keys() + 1);
+      let seats = [...Array(row+1).keys()].slice(1);
       console.log(seats);
       let rows = [];
       seats.forEach((val) => {

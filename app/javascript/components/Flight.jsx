@@ -41,7 +41,7 @@ class Flight extends React.Component {
     const { flight } = this.state;
     console.log(flight);
     console.log(this.state);
-    let ingredientList = "No ingredients available";
+    let ingredientList = "place holder";
     // if (flight..length > 0) {
     //   ingredientList = recipe.ingredients
     //     .split(",")
@@ -92,7 +92,6 @@ class Flight extends React.Component {
             </div>
           </div>
         </div>
-        <div className="overlay bg-light position-absolute" />
         <h1 className="display-4 position-relative text-white">
           {flight.name}
         </h1>
