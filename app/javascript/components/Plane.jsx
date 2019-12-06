@@ -10,12 +10,23 @@ class Plane extends React.Component {
     const seatRow = (row, col) => {
       let rowLetter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
       rowLetter = rowLetter.slice(0, col);
-      let seat_row = []
+      let seat_row = [];
       console.log("passed in row are", seat_row)
-      rowLetter.forEach(val =>seat_row.push(Seat(row, val,val))
+      rowLetter.forEach(val => seat_row.push(Seat(row, val, val))
       )
-
       return seat_row
+    }
+
+    const seats = (row, col) => {
+      console.log("rows are", row);
+      let seats = Array.from(Array(row).keys() + 1);
+      console.log(seats);
+      let rows = [];
+      seats.forEach((val) => {
+        console.log("going in loop", val);
+        rows.push(<div key={`seat_row_${val}`}>{seatRow(val, col)}</div>);
+      })
+      return rows
     }
 
     return (
@@ -24,7 +35,7 @@ class Plane extends React.Component {
         <div>col: {this.props.flight.plane_col}</div>
         {
           Number(this.props.flight.plane_col) > 0 &&
-          seatRow(Number(this.props.flight.plane_row), Number(this.props.flight.plane_col))
+          seats(Number(this.props.flight.plane_row), Number(this.props.flight.plane_col))
         }
       </div>
     )

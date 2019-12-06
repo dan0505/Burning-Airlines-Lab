@@ -18,7 +18,7 @@ Airport.create(location: "Sydney (Kingsford Smith) Airport", code: "SYD")
 Airport.create(location: "Melbourne Airport", code: "MEL")
 
 Flight.create(departure_id: Airport.where("code= 'SYD'").first.id, arrival_id: Airport.where("code= 'MEL'").first.id, date: DateTime.new(2019, 8, 29, 12, 35, 00), fleet_id: 1)
-Flight.create(departure_id: Airport.where("code= 'MEL'").first.id, arrival_id: Airport.where("code= 'SYD'").first.id, date: DateTime.new(2019, 8, 29, 16, 35, 00), fleet_id: 1)
+Flight.create(departure_id: Airport.where("code= 'MEL'").first.id, arrival_id: Airport.where("code= 'SYD'").first.id, date: DateTime.new(2019, 8, 29, 16, 35, 00), fleet_id: 3)
 
 User.create(first_name: "admin", last_name: "A", favorate_color: "black", email: "admin@admin.com", password_digest: "password", admin: true)
 User.create(first_name: "user", last_name: "test", favorate_color: "black", email: "user@admin.com", password_digest: "password")
