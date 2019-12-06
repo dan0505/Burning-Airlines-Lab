@@ -18,7 +18,7 @@ export default () => (
           Sign In
         </Link>
         <Link
-          to="/flights"
+          to="/flight"
           className="btn btn-lg custom-button"
           role="button"
         >
