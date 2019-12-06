@@ -24,6 +24,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
 
+# generate uid for seats
+gem 'public_uid'
+
 # print better console
 gem 'awesome_print', '~> 1.8'
 

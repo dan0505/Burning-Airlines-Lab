@@ -4,10 +4,9 @@ Rails.application.routes.draw do
       resources :airports, only: [:index, :show, :create]
       resources :flights, only: [:index, :show, :create]
       resources :seats, only: [:index, :show, :create]
-      # resources
     end
   end
-  root 'home#index'
+  root "home#index"
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

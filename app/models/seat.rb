@@ -1,4 +1,5 @@
 class Seat < ApplicationRecord
+  generate_public_uid
   belongs_to :user
   belongs_to :flight
 
