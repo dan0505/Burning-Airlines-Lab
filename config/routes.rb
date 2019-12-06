@@ -1,6 +1,25 @@
 Rails.application.routes.draw do
+
+  
+
   namespace :api do
     namespace :v1 do
+
+
+#       get 'flights/index'
+#       post 'flights/create'
+#       get '/show/:id', to: 'flights#show'
+#       # delete '/destroy/:id', to: 'recipes#destroy'
+
+
+#       # resources :airports, only: [:index, :show, :create]
+#       # resources :flights, only: [:index, :show, :create]
+#       # resources
+#     end
+#   end
+#   root 'home#index'
+  # get '/*path' => 'home#index'
+ 
       resources :airports, only: [:index, :show, :create]
       resources :flights, only: [:index, :show, :create]
       resources :seats, only: [:index, :show, :create]
