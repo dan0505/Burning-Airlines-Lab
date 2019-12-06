@@ -40,7 +40,7 @@ class Flights extends React.Component {
             <h5 className="card-title">{flight.id} - {flight.dep_code} ➡ {flight.arr_code}</h5>
             <div>{flight.plane_color} - {flight.plane_model}</div>
             <div>{Number(flight.plane_col) * Number(flight.plane_row)} 💺 in-total, {Number(flight.plane_col) * Number(flight.plane_row) - flight.booked_seats.length} available</div>
-            <Link to={`/flight/${flight.id}`} className="btn custom-button">
+            <Link to={`/flights/${flight.id}`} className="btn custom-button">
               Goto Flight
             </Link>
           </div>
