@@ -55,9 +55,11 @@ ActiveRecord::Schema.define(version: 2019_12_05_053250) do
     t.bigint "flight_id", null: false
     t.integer "seat_row", null: false
     t.string "seat_col", null: false
+    t.string "public_uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["flight_id"], name: "index_seats_on_flight_id"
+    t.index ["public_uid"], name: "index_seats_on_public_uid"
     t.index ["user_id"], name: "index_seats_on_user_id"
   end
 

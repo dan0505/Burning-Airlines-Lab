@@ -1,15 +1,17 @@
 class Api::V1::FlightsController < ApplicationController
-  # before_action :flight, only: [:show, :destroy]
+  before_action :flight, only: [:show, :destroy]
+
   def index
-    puts request.query_parameters
+    flights = Flight.all.order(departure_id: :asc)
     if request.query_parameters.key?("dep")
-      puts "in airport"
       airport_id = Airport.where(code: request.query_parameters["dep"]).first.id
-      puts airport_id
-      flights = Flight.where(departure_id: airport_id)
-    else
-      flights = Flight.all.order(departure_id: :asc)
+      flights = flights.where(departure_id: airport_id)
     end
+    if request.query_parameters.key?("arr")
+      airport_id = Airport.where(code: request.query_parameters["arr"]).first.id
+      flights = flights.where(arrival_id: airport_id)
+    end
+    flights = flights.details
     render json: flights
   end
 
@@ -17,7 +19,6 @@ class Api::V1::FlightsController < ApplicationController
   end
 
   def show
-    
     render json: @flight
   end
 
