@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :airports, only: [:index, :show, :create]
       resources :flights, only: [:index, :show, :create]
+      resources :seats, only: [:index, :show, :create]
       # resources
     end
   end

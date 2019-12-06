@@ -1,6 +1,6 @@
 class Api::V1::FlightsController < ApplicationController
   before_action :flight, only: [:show, :destroy]
-  
+
   def index
     flights = Flight.all.order(departure_id: :asc)
     if request.query_parameters.key?("dep")
@@ -11,8 +11,7 @@ class Api::V1::FlightsController < ApplicationController
       airport_id = Airport.where(code: request.query_parameters["arr"]).first.id
       flights = flights.where(arrival_id: airport_id)
     end
-    flights = replace_ids(flights)
-    flights = add_seats(flights)
+    flights = flights.details
     render json: flights
   end
 
@@ -20,7 +19,6 @@ class Api::V1::FlightsController < ApplicationController
   end
 
   def show
-    
     render json: @flight
   end
 
@@ -28,37 +26,6 @@ class Api::V1::FlightsController < ApplicationController
   end
 
   private
-  def add_seats(flights)
-    flights.each{ |flight|
-      puts flight
-      booked_seats = []
-      booked_seats_obj = Flight.find(flight["id"]).seat
-      booked_seats_obj.each{|seat|
-        booked_seats.push(seat.as_json)  
-      }
-      flight["booked_seats"] = booked_seats
-    }
-    flights
-  end
-
-  def replace_ids(flights)
-    airports = Airport.all
-    airport_obj = {}
-    airports.each { |airport|
-      airport_obj[airport.id] = airport.code
-    }
-    
-    flight_list = []
-    flights.each{ |flight|
-      flight_obj = {}
-      flight_obj = flight.as_json
-      flight_obj["departure_airport"] = airport_obj[flight.departure_id]
-      flight_obj["arrival_airport"] = airport_obj[flight.arrival_id]
-      flight_list.push(flight_obj)
-    }
-    flight_list
-  end
-
 
   def flight_params
     params.permit(:id, :departure, :arrival, :date, :fleet_id)
