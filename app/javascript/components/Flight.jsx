@@ -56,10 +56,11 @@ class Flight extends React.Component {
       <div className="">
         <div className="hero position-relative d-flex align-items-center justify-content-center">
           <img
-            src="https://home.bt.com/images/passenger-plane-landed-in-hudson-river-136395463010202601-150114153840.jpg"
+            src="https://images.unsplash.com/photo-1483450388369-9ed95738483c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
             alt={`${flight.id} image`}
             className="img-fluid position-absolute"
           />
+          <div></div>
           <div className="overlay bg-dark position-absolute" />
           <h1 className="display-4 position-relative text-white">
             {flight.name}
