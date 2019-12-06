@@ -24,17 +24,22 @@ class Flights extends React.Component {
   }
 
   render() {
+
     const { flights } = this.state;
+    console.log(flights)
     const allFlights = flights.map((flight, index) => (
       <div key={index} className="col-md-6 col-lg-4">
         <div className="card mb-4">
-          {/* <img
-            src={recipe.image}
+          <img
+            src="https://home.bt.com/images/passenger-plane-landed-in-hudson-river-136395463010202601-150114153840.jpg"
             className="card-img-top"
-            alt={`${recipe.name} image`}
-          /> */}
+            alt={`${flight.id} image`}
+          />
+
           <div className="card-body">
-            <h5 className="card-title">{flight.id}</h5>
+            <h5 className="card-title">{flight.id} - {flight.dep_code} ➡ {flight.arr_code}</h5>
+            <div>{flight.plane_color} - {flight.plane_model}</div>
+            <div>{Number(flight.plane_col) * Number(flight.plane_row)} 💺 in-total, {Number(flight.plane_col) * Number(flight.plane_row) - flight.booked_seats.length} available</div>
             <Link to={`/flight/${flight.id}`} className="btn custom-button">
               Goto Flight
             </Link>
