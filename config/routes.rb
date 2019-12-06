@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
   resources :users
   root "home#index"
+  get '*path', to: 'home#index'
 end
