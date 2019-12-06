@@ -1,5 +1,5 @@
 class Api::V1::FlightsController < ApplicationController
-  before_action :flight, only: [:show, :destroy]
+  # before_action :flight, only: [:show, :destroy]
   def index
     puts request.query_parameters
     if request.query_parameters.key?("dep")
