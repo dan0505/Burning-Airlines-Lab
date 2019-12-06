@@ -21,19 +21,26 @@ export default () => (
       style={jumbotronStyle}
     >
       <div className="container secondary-color">
-        <h1 className="display-4 mr-3 ml-3">Bunnings Airlines</h1>
-        <p className="lead mr-3 ml-3">
-          Welcome to our shitty Airline......
+        <h1 className="display-4 mr-3 ml-3">🔥 Burning Air 🔥</h1>
+        <p className="lead mr-3 ml-3 text-center">
+          The Hotest Airline ...
         </p>
         <hr className="my-4" />
         <div className="text-center">
           <Link
-            to="/recipes"
-            className="btn btn-lg custom-button"
+            to="/flights"
+            className="btn btn-lg custom-button ml-3"
             role="button"
           >
-            Book a Seat
-        </Link>
+            Book a 💺
+          </Link>
+          <Link
+            to="/airports"
+            className="btn btn-lg custom-button ml-3"
+            role="button"
+          >
+            Find a 🏝
+          </Link>
         </div>
 
       </div>
