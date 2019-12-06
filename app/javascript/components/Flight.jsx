@@ -15,9 +15,7 @@ class Flight extends React.Component {
         params: { id }
       }
     } = this.props;
-
     const url = `/api/v1/flights/${id}`;
-
     fetch(url)
       .then(response => {
         if (response.ok) {
@@ -36,9 +34,9 @@ class Flight extends React.Component {
   }
 
   render() {
-
     const { flight } = this.state;
     console.log(flight);
+    console.log(this.state)
     let ingredientList = "No ingredients available";
     // const total_seat = Number(flight.plane_row) * Number(flight.plane_col)
     // const booked_seats = Number(flight.booked_seats.length)
@@ -64,7 +62,7 @@ class Flight extends React.Component {
           />
           <div className="overlay bg-dark position-absolute" />
           <h1 className="display-4 position-relative text-white">
-            {recipe.name}
+            {flight.name}
           </h1>
         </div>
         <div className="container py-5">
@@ -85,7 +83,7 @@ class Flight extends React.Component {
             </div>
             <div className="col-sm-12 col-lg-2">
               <button type="button" className="btn btn-danger">
-                Delete Recipe
+                Delete Flight
               </button>
             </div>
           </div>
