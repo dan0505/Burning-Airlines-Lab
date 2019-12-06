@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Plane from "./Plane";
 
 class Flight extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { flight: "" };
+    this.state = {
+      flight: "",
+    };
 
     this.addHtmlEntities = this.addHtmlEntities.bind(this);
   }
@@ -23,7 +26,8 @@ class Flight extends React.Component {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.setState({ flight: response }))
+      .then(response => this.setState({ flight: response })
+      )
       .catch(() => this.props.history.push("/flights"));
   }
 
@@ -36,11 +40,8 @@ class Flight extends React.Component {
   render() {
     const { flight } = this.state;
     console.log(flight);
-    console.log(this.state)
+    console.log(this.state);
     let ingredientList = "No ingredients available";
-    // const total_seat = Number(flight.plane_row) * Number(flight.plane_col)
-    // const booked_seats = Number(flight.booked_seats.length)
-
     // if (flight..length > 0) {
     //   ingredientList = recipe.ingredients
     //     .split(",")
@@ -52,22 +53,52 @@ class Flight extends React.Component {
     // }
     const recipeInstruction = this.addHtmlEntities(flight.plane_model);
 
+    var sectionStyle = {
+      backgroundImage:
+        "url(https://images.unsplash.com/photo-1483450388369-9ed95738483c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)",
+      backgroundSize: "cover",
+      overflow: "hidden",
+      width: "100%",
+      height: "300px"
+    };
+
+    var jumbotronStyle = {
+      backgroundColor: "rgba(255, 255, 255, 0.7)",
+      // width: "70%",
+      // margin: "auto"
+    };
+
     return (
       <div className="">
-        <div className="hero position-relative d-flex align-items-center justify-content-center">
-          <img
-            src="https://images.unsplash.com/photo-1483450388369-9ed95738483c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-            alt={`${flight.id} image`}
-            className="img-fluid position-absolute"
-          />
-          <div></div>
-          <div className="overlay bg-dark position-absolute" />
-          <h1 className="display-4 position-relative text-white">
-            {flight.name}
-          </h1>
+        <div style={sectionStyle} className="align-items-center justify-content-center">
+          <div
+            className="rounded"
+            style={jumbotronStyle}
+          >
+            <div className="container secondary-color">
+              <h3 className="display-8 mr-3 ml-3">BA{flight.id}</h3>
+              <h3 className="display-8 mr-3 ml-3">From:</h3>
+              <h3 className="display-8 mr-3 ml-3">{flight.dep_airport} {"("}{flight.dep_code}{")"}</h3>
+              <h3 className="display-8 mr-3 ml-3">To:</h3>
+              <h3 className="display-8 mr-3 ml-3">{flight.arr_airport} {"("}{flight.arr_code}{")"}</h3>
+              <h3 className="display-8 mr-3 ml-3">At:</h3>
+              <h3 className="display-8 mr-3 ml-3">{flight.date}</h3>
+              <p className="lead mr-3 ml-3 text-center">
+                placeholder
+              </p>
+              <hr className="my-4" />
+              <div className="text-center">
+              </div>
+            </div>
+          </div>
         </div>
+        <div className="overlay bg-light position-absolute" />
+        <h1 className="display-4 position-relative text-white">
+          {flight.name}
+        </h1>
         <div className="container py-5">
           <div className="row">
+            <Plane flight={this.state.flight} />
             <div className="col-sm-12 col-lg-3">
               <ul className="list-group">
                 <h5 className="mb-2">Plane Layout</h5>
@@ -82,11 +113,11 @@ class Flight extends React.Component {
                 }}
               />
             </div>
-            <div className="col-sm-12 col-lg-2">
+            {/* <div className="col-sm-12 col-lg-2">
               <button type="button" className="btn btn-danger">
                 Delete Flight
               </button>
-            </div>
+            </div> */}
           </div>
           <Link to="/flights" className="btn btn-link">
             Back to flights
@@ -95,7 +126,6 @@ class Flight extends React.Component {
       </div>
     );
   }
-
 }
 
 export default Flight;

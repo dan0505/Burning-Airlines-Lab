@@ -42,7 +42,6 @@ export default () => (
             Find a 🏝
           </Link>
         </div>
-
       </div>
     </div>
   </div>
