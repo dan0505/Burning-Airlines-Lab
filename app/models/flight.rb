@@ -9,29 +9,34 @@ class Flight < ApplicationRecord
   def self.details
     flights = all.as_json
     flights.each { |flight|
-      fleet_rec = Fleet.find(flight["fleet_id"])
-      flight["plane_color"] = fleet_rec.color
-      flight["plane_model"] = fleet_rec.plane.model
-      flight["plane_row"] = fleet_rec.plane.row
-      flight["plane_col"] = fleet_rec.plane.seatsPerRow
-      dep_rec = Airport.find(flight["departure_id"])
-      flight["dep_airport"] = dep_rec.location
-      flight["dep_code"] = dep_rec.code
-      arr_rec = Airport.find(flight["arrival_id"])
-      flight["arr_airport"] = arr_rec.location
-      flight["arr_code"] = arr_rec.code
-      booked_seats = []
-      booked_seats_rec = Flight.find(flight["id"]).seat
-      booked_seats_rec.each { |seat|
-        booked_seats.push(seat.as_json)
-      }
-      flight["booked_seats"] = booked_seats
+      flight = detail(flight)
     }
     flights
   end
 
   def self.forFlight(flight_id)
     where("flight_id = ?", flight_id)
+  end
+
+  def self.detail(flight)
+    fleet_rec = Fleet.find(flight["fleet_id"])
+    flight["plane_color"] = fleet_rec.color
+    flight["plane_model"] = fleet_rec.plane.model
+    flight["plane_row"] = fleet_rec.plane.row
+    flight["plane_col"] = fleet_rec.plane.seatsPerRow
+    dep_rec = Airport.find(flight["departure_id"])
+    flight["dep_airport"] = dep_rec.location
+    flight["dep_code"] = dep_rec.code
+    arr_rec = Airport.find(flight["arrival_id"])
+    flight["arr_airport"] = arr_rec.location
+    flight["arr_code"] = arr_rec.code
+    booked_seats = []
+    booked_seats_rec = Flight.find(flight["id"]).seat
+    booked_seats_rec.each { |seat|
+      booked_seats.push(seat.as_json)
+    }
+    flight["booked_seats"] = booked_seats
+    flight
   end
 
   def check_departure_and_arrival

@@ -19,7 +19,7 @@ class Api::V1::FlightsController < ApplicationController
   end
 
   def show
-    render json: @flight
+    render json: Flight.detail(@flight.as_json)
   end
 
   def destroy
